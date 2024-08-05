@@ -1,6 +1,7 @@
 <?php 
     include('./methode/methode.php');
-    $electriques = methode::getElectrique();
+    $voitures = methode::getVoitures();
+    $luxecar=[];
 
 ?>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ROYAL CARS - Car Rental HTML Template</title>
+    <title>Euro-Article</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -37,54 +38,63 @@
 <body>
     <?php include("entete.php");?>
 
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">Accessoire de toutes Catégories</h1>
         <div class="d-inline-flex text-white">
-            <h6 class="text-uppercase m-0"><a class="text-white" href="">Accueil</a></h6>
-            <h6 class="text-body m-0 px-3">/</h6>
-            <h6 class="text-uppercase text-body m-0">Accessoires</h6>
+            <h6 class="text-uppercase m-0"><a class="text-white" href="">Section</a></h6>
         </div>
+        <h1 class="display-3 text-uppercase text-white mb-3">voiture de luxe</h1>
+        
     </div>
     <!-- Page Header Start -->
-
 
     <!-- Rent A Car Start -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
-            <h1 class="display-4 text-uppercase text-center mb-5">Nos différents accessoires</h1>
+            <h1 class="display-4 text-uppercase text-center mb-5">Trouve ta voiture</h1>
             <div class="row">
                 <?php
-               foreach ($electriques as $electrique) {
-                if($electrique["prix"]==0){
-                    $prix="Discutez";
-                }else{
-                    $prix=$electrique["prix"];
+               foreach ($voitures as $voiture) {
+                
+                if ($voiture["style"]=="Luxe") {
+                    array_push($luxecar,$voiture);
                 }
-                echo '<div class="col-lg-4 col-md-6 mb-2">
-                        <div class="rent-item mb-4">
-                            <img class="img-fluid mb-4" src="' . $electrique["photo"] . '" alt="' . $electrique["nom"] . '" style="max-width: 300px; height: 200px;">
-                            <h4 class="text-uppercase mb-4">' . $electrique["nom"] . '</h4>
-                            <div class="d-flex justify-content-center mb-4">
-                                <div class="px-2">
-                                    <i class="fas fa-battery-full text-primary mr-1"></i>
-                                    <span>' . $electrique["capacite"] . '</span>
+            }
+                foreach($luxecar as $car){
+                    if($voiture["prix"]==0){
+                        $prix="Discutez";
+                    }else{
+                        $prix=$voiture["prix"];
+                    }
+                    if ($voiture["typeboite"]==null) {
+                        $boite="--";
+                    }else{
+                        $boite=$voiture["typeboite"];
+                    }
+                
+                    echo '<div class="col-lg-4 col-md-6 mb-2">
+                            <div class="rent-item mb-4">
+                                <img class="img-fluid mb-4" src="' . $voiture["photo"] . '" alt="' . $voiture["nom"] . '" style="max-width: 300px; height: 200px;">
+                                <h4 class="text-uppercase mb-4">' . $voiture["nom"] . '</h4>
+                                <div class="d-flex justify-content-center mb-4">
+                                    <div class="px-2">
+                                        <i class="fa fa-car text-primary mr-1"></i>
+                                        <span>' . $voiture["annee"] . '</span>
+                                    </div>
+                                    <div class="px-2 border-left border-right">
+                                        <i class="fa fa-cogs text-primary mr-1"></i>
+                                        <span>' . $boite . '</span>
+                                    </div>
+                                    <div class="px-2">
+                                        <i class="fa fa-road text-primary mr-1"></i>
+                                        <span>25Km</span>
+                                    </div>
                                 </div>
-                                <div class="px-2 border-left border-right">
-                                    <i class="bi bi-recycle text-warning text-success"></i>
-                                    <span>' . $electrique["etat"] . '</span>
-                                </div>
-                                <div class="px-2">
-                                    <i class="fa fa-road text-primary mr-1"></i>
-                                    <span>25Km</span>
-                                </div>
+                                
+                                <a class="btn btn-primary px-3" href="detail.php?id='.$voiture["id"].'">' .methode::formatNumber($prix). ' FCFA</a>
                             </div>
-                            
-                            <a class="btn btn-primary px-3" href="detail.php">' .$electrique["prix"]. ' FCFA    </a>
-                        </div>
-                    </div>';
-            } 
+                        </div>';
+                } 
             ?>
             </div>
         </div>
@@ -98,7 +108,7 @@
             <div class="row mx-0">
                 <div class="col-lg-6 px-0">
                     <div class="px-5 bg-secondary d-flex align-items-center justify-content-between" style="height: 350px;">
-                        <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="img/plaquee.png" alt="">
+                        <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="img/banner-left.png" alt="">
                         <div class="text-right">
                             <h3 class="text-uppercase text-light mb-3">Voulez-vous le luxe?</h3>
                             <p class="mb-4">Des voitures de luxe toutes marques confondues</p>
@@ -113,7 +123,7 @@
                             <p class="mb-4">Un catalogue de voiture resistante à votre disposition</p>
                             <a class="btn btn-primary py-2 px-4" href="">Catalogue</a>
                         </div>
-                        <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="img/groupee.png" alt="">
+                        <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="img/banner-right.png" alt="">
                     </div>
                 </div>
             </div>
@@ -244,8 +254,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    <?php include("pied.php");?>
 </body>
 
 </html>

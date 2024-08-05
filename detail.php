@@ -1,6 +1,6 @@
 <?php
     include("./methode/methode.php");
-    $img= getVoitureById($_GET["id"]);
+    $img= methode::getVoitureById($_GET["id"]);
     //echo $img["nom"];
 ?>
 
@@ -124,7 +124,8 @@
                             </select>
                         </div>
                         <div class="form-group mb-0">
-                            <button class="btn btn-primary btn-block" type="submit" style="height: 50px;"> <img src="./img/social.png" alt="" style="max-width: 32px; height: 32px;"> <a class="text-white" href="https://wa.me/07684843">Contacter le vendeur</a> </button>
+                            
+                        <a class="text-white" href="https://wa.me/07684843"><button class="btn btn-primary btn-block"  style="height: 50px;"> <img src="./img/social.png" alt="" style="max-width: 32px; height: 32px;">Contacter le vendeur </button></a>
                         </div>
                     </div>
                 </div>

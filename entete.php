@@ -1,14 +1,19 @@
 <!-- Topbar Start -->
 <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
         <div class="row">
-            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+            <div class="col-md-8 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
                     <a class="text-body pr-3" href=""><i class="fa fa-phone-alt mr-2"></i>+226 07684843</a>
                     <span class="text-body">|</span>
                     <a class="text-body px-3" href=""><i class="fa fa-envelope mr-2"></i>daoudamare19@gmail.com</a>
+                    <form class="d-inline-flex align-items-center ml-3" action="#" method="get">
+                        <input type="text" class="form-control" placeholder="Recherche...">
+                        <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
+                    </form> 
                 </div>
+                
             </div>
-            <div class="col-md-6 text-center text-lg-right">
+            <div class="col-md-4 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <a class="text-body px-3" href="">
                         <i class="fab fa-facebook-f"></i>

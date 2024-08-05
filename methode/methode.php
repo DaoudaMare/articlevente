@@ -176,11 +176,92 @@
             $stmt->close();
             $mysqli->close();
         }
+
+        static function addUser($nom,$prenom,$email,$password,$numero){
+            $con=self::connectDB();
+            // Hacher le mot de passe
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Préparer et exécuter la requête SQL
+            $stmt = $con->prepare("INSERT INTO user (nom, prenom, email, password, numero) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $nom, $prenom, $email, $hashed_password, $numero);
+
+            if ($stmt->execute()) {
+                echo "Nouvel utilisateur enregistré avec succès";
+            } else {
+                echo "Erreur : " . $stmt->error;
+            }
+
+            // Fermer la connexion
+            $stmt->close();
+            $con->close();
+        }
+
+        static function AuthUser($email,$password){
+            //include("./seconnecter.php");
+            $mysqli=self::connectDB();
+             // Préparer et exécuter la requête SQL
+            $stmt = $mysqli->prepare("SELECT id, nom, prenom, password FROM user WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows > 0) {
+        // L'utilisateur existe
+            $stmt->bind_result($id, $nom, $prenom, $hashed_password);
+            $stmt->fetch();
+
+            // Vérifier le mot de passe
+            if (password_verify($password, $hashed_password)) {
+                // Démarrer une session et enregistrer les informations de l'utilisateur
+                session_start();
+                $_SESSION['id'] = $id;
+                $_SESSION['nom'] = $nom;
+                $_SESSION['prenom'] = $prenom;
+                $_SESSION['email'] = $email;
+
+                header("Location: admin.php?success=1");
+            } else {
+                header("Location: connectAdmin.php?success=0");
+            }
+        } else {
+            header("Location: connectAdmin.php?success=0");
+        }
+
+        // Fermer la connexion
+        $stmt->close();
+        $mysqli->close();
     }
+
+    static function compteurVisites() {
+        $mysqli = self::connectDB();
     
+        // Vérifier si le compteur existe déjà
+        $result = $mysqli->query("SELECT nombre_visites FROM compteur_visites LIMIT 1");
+    
+        if ($result->num_rows === 0) {
+            // Si aucun enregistrement, initialiser le compteur
+            $mysqli->query("INSERT INTO compteur_visites (nombre_visites) VALUES (0)");
+            $nombre_visites = 0;
+        } else {
+            // Récupérer le compteur actuel
+            $row = $result->fetch_assoc();
+            $nombre_visites = $row['nombre_visites'];
+        }
+    
+        // Incrémenter le compteur
+        $nombre_visites++;
+    
+        // Mettre à jour le compteur dans la base de données
+        $mysqli->query("UPDATE compteur_visites SET nombre_visites = $nombre_visites");
+    
+        // Fermer la connexion
+        $mysqli->close();
+    
+        return $nombre_visites;
+    }
 
-
-    function getVoitures() {
+    static function getElectrique() {
         // Connexion à la base de données
         $mysqli = new mysqli("localhost", "root", "", "italievente");
     
@@ -190,15 +271,15 @@
         }
     
         // Requête SQL pour récupérer les voitures
-        $sql = "SELECT id, nom, annee, etat, photo, prix,typeboite,disponible FROM voiture";
+        $sql = "SELECT id, nom, description, capacite, photo, etat,photo,photo1,photo2,prix FROM electrique";
         $result = $mysqli->query($sql);
     
-        $voitures = array();
+        $electriques = array();
     
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 // Ajouter chaque voiture au tableau $voitures
-                $voitures[] = $row;
+                $electriques[] = $row;
             }
         }
     
@@ -206,10 +287,10 @@
         $mysqli->close();
     
         // Retourner le tableau contenant les données des voitures
-        return $voitures;
+        return $electriques;
     }
 
-    function getVoitureById($id) {
+    static function getVoitureById($id) {
         // Connexion à la base de données
         $mysqli = new mysqli("localhost", "root", "", "italievente");
     
@@ -234,11 +315,11 @@
         // Récupérer le résultat
         $result = $stmt->get_result();
     
-        $voiture = null;
+        $voitures = null;
     
         if ($result->num_rows > 0) {
             // Récupérer les données de la voiture
-            $voiture = $result->fetch_assoc();
+            $voitures = $result->fetch_assoc();
         }
     
         // Fermer la connexion à la base de données
@@ -246,11 +327,42 @@
         $mysqli->close();
     
         // Retourner les données de la voiture
-        return $voiture;
+        return $voitures;
     }
 
-   
+    
+    static function getVoitures() {
+        // Connexion à la base de données
+        $mysqli = new mysqli("localhost", "root", "", "italievente");
+    
+        // Vérifier la connexion
+        if ($mysqli->connect_error) {
+            die("Connexion échouée : " . $mysqli->connect_error);
+        }
+    
+        // Requête SQL pour récupérer les voitures
+        $sql = "SELECT id, nom, annee, etat, photo, prix,typeboite,disponible,style FROM voiture";
+        $result = $mysqli->query($sql);
+    
+        $voitures = array();
+    
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                // Ajouter chaque voiture au tableau $voitures
+                $voitures[] = $row;
+            }
+        }
+    
+        // Fermer la connexion à la base de données
+        $mysqli->close();
+    
+        // Retourner le tableau contenant les données des voitures
+        return $voitures;
+    }
 
+    static function formatNumber($number) {
+        return number_format($number, 0, '', ' ');
+    }
+}
     
 ?>
-

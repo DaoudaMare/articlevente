@@ -1,6 +1,7 @@
 <?php 
     include('./methode/methode.php');
-    $voitures = array_reverse(methode::getVoitures());
+    $voitures = methode::getVoitures();
+    $luxecar=[];
 
 ?>
 <!DOCTYPE html>
@@ -37,16 +38,15 @@
 <body>
     <?php include("entete.php");?>
 
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
         <div class="d-inline-flex text-white">
-            <h6 class="text-uppercase text-body m-0">Section Voiture</h6>
+            <h6 class="text-uppercase m-0"><a class="text-white" href="">Section</a></h6>
         </div>
-        <h1 class="display-3 text-uppercase text-white mb-3">Nos voitures disponibles</h1>
+        <h1 class="display-3 text-uppercase text-white mb-3">voiture d'occasion</h1>
+        
     </div>
     <!-- Page Header Start -->
-
 
     <!-- Rent A Car Start -->
     <div class="container-fluid py-5">
@@ -55,46 +55,46 @@
             <div class="row">
                 <?php
                foreach ($voitures as $voiture) {
-                if($voiture["prix"]==0){
-                    $prix="Discutez";
-                }else{
-                    $prix=(int)$voiture["prix"];
+                
+                if ($voiture["etat"]=="occasion") {
+                    array_push($luxecar,$voiture);
                 }
-                if ($voiture["typeboite"]==null) {
-                    $boite="--";
-                }else{
-                    $boite=$voiture["typeboite"];
-                }
-                echo '<div class="col-lg-4 col-md-6 mb-2">
-        <div class="rent-item mb-4">
-            <img class="img-fluid mb-4" src="' . htmlspecialchars($voiture["photo"]) . '" alt="' . htmlspecialchars($voiture["nom"]) . '" style="max-width: 300px; height: 200px;">
-            <h4 class="text-uppercase mb-4">' . htmlspecialchars($voiture["nom"]) . '</h4>
-            <div class="d-flex justify-content-center mb-4">
-                <div class="px-2">
-                    <i class="fa fa-car text-primary mr-1"></i>
-                    <span>' . htmlspecialchars($voiture["annee"]) . '</span>
-                </div>
-                <div class="px-2 border-left border-right">
-                    <i class="fa fa-cogs text-primary mr-1"></i>
-                    <span>' . htmlspecialchars($boite) . '</span>
-                </div>
-                <div class="px-2">
-                    <i class="fa fa-road text-primary mr-1"></i>
-                    <span>25Km</span>
-                </div>
-            </div>
-            <a class="btn btn-primary px-3" href="detail.php?id=' . htmlspecialchars($voiture["id"]) . '">';
-
-if (is_int($prix) || is_float($prix)|| is_double($prix)) {
-    echo methode::formatNumber($prix) . ' FCFA';
-} else {
-    echo htmlspecialchars($prix) . '';
-}
-
-echo '</a>
-        </div>
-    </div>';
-            } 
+            }
+                foreach($luxecar as $car){
+                    if($voiture["prix"]==0){
+                        $prix="Discutez";
+                    }else{
+                        $prix=$voiture["prix"];
+                    }
+                    if ($voiture["typeboite"]==null) {
+                        $boite="--";
+                    }else{
+                        $boite=$voiture["typeboite"];
+                    }
+                
+                    echo '<div class="col-lg-4 col-md-6 mb-2">
+                            <div class="rent-item mb-4">
+                                <img class="img-fluid mb-4" src="' . $voiture["photo"] . '" alt="' . $voiture["nom"] . '" style="max-width: 300px; height: 200px;">
+                                <h4 class="text-uppercase mb-4">' . $voiture["nom"] . '</h4>
+                                <div class="d-flex justify-content-center mb-4">
+                                    <div class="px-2">
+                                        <i class="fa fa-car text-primary mr-1"></i>
+                                        <span>' . $voiture["annee"] . '</span>
+                                    </div>
+                                    <div class="px-2 border-left border-right">
+                                        <i class="fa fa-cogs text-primary mr-1"></i>
+                                        <span>' . $boite . '</span>
+                                    </div>
+                                    <div class="px-2">
+                                        <i class="fa fa-road text-primary mr-1"></i>
+                                        <span>25Km</span>
+                                    </div>
+                                </div>
+                                
+                                <a class="btn btn-primary px-3" href="detail.php?id='.$voiture["id"].'">' .methode::formatNumber($prix). ' FCFA</a>
+                            </div>
+                        </div>';
+                } 
             ?>
             </div>
         </div>
@@ -165,9 +165,7 @@ echo '</a>
     </div>
     <!-- Vendor End -->
 
-
-<?php include("pied.php");?>
-
+    <?php include("pied.php")?>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
