@@ -61,25 +61,25 @@
                 }
             }
                 foreach($luxecar as $car){
-                    if($voiture["prix"]==0){
+                    if($car["prix"]==0){
                         $prix="Discutez";
                     }else{
-                        $prix=$voiture["prix"];
+                        $prix=(int)$car["prix"];
                     }
-                    if ($voiture["typeboite"]==null) {
+                    if ($car["typeboite"]==null) {
                         $boite="--";
                     }else{
-                        $boite=$voiture["typeboite"];
+                        $boite=$car["typeboite"];
                     }
                 
                     echo '<div class="col-lg-4 col-md-6 mb-2">
                             <div class="rent-item mb-4">
-                                <img class="img-fluid mb-4" src="' . $voiture["photo"] . '" alt="' . $voiture["nom"] . '" style="max-width: 300px; height: 200px;">
-                                <h4 class="text-uppercase mb-4">' . $voiture["nom"] . '</h4>
+                                <img class="img-fluid mb-4" src="' . $car["photo"] . '" alt="' . $car["nom"] . '" style="max-width: 300px; height: 200px;">
+                                <h4 class="text-uppercase mb-4">' . $car["nom"] . '</h4>
                                 <div class="d-flex justify-content-center mb-4">
                                     <div class="px-2">
                                         <i class="fa fa-car text-primary mr-1"></i>
-                                        <span>' . $voiture["annee"] . '</span>
+                                        <span>' . $car["annee"] . '</span>
                                     </div>
                                     <div class="px-2 border-left border-right">
                                         <i class="fa fa-cogs text-primary mr-1"></i>
@@ -91,8 +91,15 @@
                                     </div>
                                 </div>
                                 
-                                <a class="btn btn-primary px-3" href="detail.php?id='.$voiture["id"].'">' .methode::formatNumber($prix). ' FCFA</a>
-                            </div>
+ <a class="btn btn-primary px-3" href="detail.php?id=' . htmlspecialchars($car["id"]) . '">';
+
+if (is_int($prix) || is_float($prix)|| is_double($prix)) {
+    echo methode::formatNumber($prix) . ' FCFA';
+} else {
+    echo htmlspecialchars($prix) . '';
+}
+
+echo '</a>                            </div>
                         </div>';
                 } 
             ?>

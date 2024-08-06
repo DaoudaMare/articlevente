@@ -41,10 +41,14 @@
                 <label for="annee"><i class="fas fa-calendar-alt"></i> Année :</label>
                 <input type="text" class="form-control" id="annee" name="annee" placeholder="Entrez l'année de la voiture" required>
             </div>
-
+            
+           
             <div class="form-group">
-                <label for="etat"><i class="fas fa-info-circle"></i> État :</label>
-                <input type="text" class="form-control" id="etat" name="etat" placeholder="Entrez l'état de la voiture" required>
+            <label for="etat"><i class="fas fa-info-circle"></i> État :</label>
+                <select id="etat" name="etat" class="form-control" required>
+                    <option value="occasion">Occasion</option>
+                    <option value="neuf">Neuf</option>
+                </select>
             </div>
 
             <div class="form-group">
