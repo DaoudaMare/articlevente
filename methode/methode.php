@@ -201,14 +201,14 @@ class methode
         //include("./seconnecter.php");
         $mysqli = self::connectDB();
         // Préparer et exécuter la requête SQL
-        $stmt = $mysqli->prepare("SELECT id, nom, prenom, password FROM user WHERE email = ?");
+        $stmt = $mysqli->prepare("SELECT id, nom, prenom, password,numero FROM user WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
             // L'utilisateur existe
-            $stmt->bind_result($id, $nom, $prenom, $hashed_password);
+            $stmt->bind_result($id, $nom, $prenom, $hashed_password,$numero);
             $stmt->fetch();
 
             // Vérifier le mot de passe
@@ -219,6 +219,8 @@ class methode
                 $_SESSION['nom'] = $nom;
                 $_SESSION['prenom'] = $prenom;
                 $_SESSION['email'] = $email;
+                $_SESSION['numero'] = $numero;
+                $_SESSION['password'] = $hashed_password;
 
                 header("Location: admin.php?success=1");
             } else {
@@ -318,7 +320,7 @@ class methode
         $mysqli = self::connectDB();
 
         // Requête SQL pour récupérer les voitures
-        $sql = "SELECT id, nom,etat, cible, photo,photo1,photo2,prix FROM vetement";
+        $sql = "SELECT id, nom,etat,type, cible, photo,photo1,photo2,prix FROM vetement";
         $result = $mysqli->query($sql);
 
         $vetements = array();
@@ -584,4 +586,39 @@ class methode
         $stmt->close();
         $mysqli->close();
     }
+
+    public static function updateUser($id, $nom, $prenom, $email, $password, $numero) {
+
+        try {
+            $pdo = new PDO("mysql:host=localhost;dbname=italievente", "root", "");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Erreur de connexion à la base de données : " . $e->getMessage());
+        }
+
+        try {
+            $sql = "UPDATE user SET nom = :nom, prenom = :prenom, email = :email, password = :password, numero = :numero WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+
+            // Hachage du mot de passe
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // Liaison des paramètres
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':prenom', $prenom);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':numero', $numero);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            $stmt->execute();
+
+            header("Location: profil.php?success=1");
+        } catch (PDOException $e) {
+            echo "Erreur lors de la mise à jour de l'utilisateur : " . $e->getMessage();
+            header("Location: profil.php?success=0");
+        }
+    }
+
 }

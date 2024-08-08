@@ -1,5 +1,6 @@
 <?php
     include("./methode/methode.php");
+    session_start();
     if (isset($_POST['submit'])) {
         methode::addCuisine();
     }
@@ -103,5 +104,6 @@
             }, 5000); // Le message disparaît après 5 secondes
         });
     </script>
+    
 </body>
 </html>

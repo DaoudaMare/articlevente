@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-8 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-body pr-3" href=""><i class="fa fa-phone-alt mr-2"></i>+226 07684843</a>
+                    <a class="text-body pr-3" href=""><i class="fa fa-phone-alt mr-2"></i>+39 351 813 2484</a>
                     <span class="text-body">|</span>
-                    <a class="text-body px-3" href=""><i class="fa fa-envelope mr-2"></i>daoudamare19@gmail.com</a>
+                    <a class="text-body px-3" href=""><i class="fa fa-envelope mr-2"></i>nonioumar1@gmail.com</a>
                     <form class="d-inline-flex align-items-center ml-3" action="resultatRecherche.php" method="post">
                         <input type="text" class="form-control" name="search" placeholder="Recherche...">
                         <button type="submit" class="btn btn-primary ml-2">Rechercher</button>

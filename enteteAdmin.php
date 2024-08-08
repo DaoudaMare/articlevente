@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-body pr-3" href="#"><i class="fa fa-phone-alt mr-2"></i>+226 07684843</a>
+                    <a class="text-body pr-3" href="#"><i class="fa fa-phone-alt mr-2"></i>+39 351 813 2484</a>
                     <span class="text-body">|</span>
                     <a class="text-body px-3" href="#"><i class="fa fa-envelope mr-2"></i>Espace administrateur</a>
                 </div>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            <a href="connectAdmin.php" class="nav-item nav-link"> <i class="fas fa-user"></i> Se déconnecter <div class="container"> </div></a>                            
+                            <a href="profil.php?id=<?php echo $_SESSION['id'];?>" class="nav-item nav-link"> <i class="fas fa-user"></i> Profil <div class="container"> </div></a>                            
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,5 +130,6 @@
             }, 5000); // Le message disparaît après 5 secondes
         });
     </script>
+    
 </body>
 </html>

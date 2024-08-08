@@ -385,7 +385,7 @@
             }, 5000); // Le message disparaît après 5 secondes
         });
     </script>
-    <?php session_destroy();?>
+    
 </body>
 
 </html>

@@ -96,22 +96,22 @@
             <div class="row mx-0">
                 <div class="col-lg-6 px-0">
                     <div class="px-5 bg-secondary d-flex align-items-center justify-content-between" style="height: 350px;">
-                        <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="img/plaquee.png" alt="">
+                        <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="img/cuis.png" alt="">
                         <div class="text-right">
-                            <h3 class="text-uppercase text-light mb-3">Voulez-vous le luxe?</h3>
+                            <h3 class="text-uppercase text-light mb-3">tous ce qu'il vous faut </h3>
                             <p class="mb-4">Des voitures de luxe toutes marques confondues</p>
-                            <a class="btn btn-primary py-2 px-4" href="">Catalogue</a>
+                            <a class="btn btn-primary py-2 px-4" href="cuisine_acc.php">Catalogue</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 px-0">
                     <div class="px-5 bg-dark d-flex align-items-center justify-content-between" style="height: 350px;">
                         <div class="text-left">
-                            <h3 class="text-uppercase text-light mb-3">Voulez-vous la résistance?</h3>
+                            <h3 class="text-uppercase text-light mb-3">pour une bonne cuisine</h3>
                             <p class="mb-4">Un catalogue de voiture resistante à votre disposition</p>
-                            <a class="btn btn-primary py-2 px-4" href="">Catalogue</a>
+                            <a class="btn btn-primary py-2 px-4" href="cuisine_acc.php">Catalogue</a>
                         </div>
-                        <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="img/groupee.png" alt="">
+                        <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="img/gaz.png" alt="">
                     </div>
                 </div>
             </div>
