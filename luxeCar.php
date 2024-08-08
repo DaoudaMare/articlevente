@@ -1,7 +1,7 @@
-<?php 
-    include('./methode/methode.php');
-    $voitures = methode::getVoitures();
-    $luxecar=[];
+<?php
+include('./methode/methode.php');
+$voitures = methode::getVoitures();
+$luxecar = [];
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
@@ -36,17 +36,48 @@
 </head>
 
 <body>
-    <?php include("entete.php");?>
+    <?php include("entete.php"); ?>
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header">
-        <div class="d-inline-flex text-white">
-            <h6 class="text-uppercase m-0"><a class="text-white" href="">Section</a></h6>
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0" style="margin-bottom: 90px;">
+        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="img/lux2.jpeg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Voiture de Luxe</h4>
+                            <h1 class="display-1 text-white mb-md-4">Pour le confort et la résistance</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Achetez maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/lux3.jpeg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Voiture d'occasion</h4>
+                            <h1 class="display-1 text-white mb-md-4">Qualité au meilleur prix</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Achetez maintenant</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-prev-icon mb-n2"></span>
+                </div>
+            </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-next-icon mb-n2"></span>
+                </div>
+            </a>
         </div>
-        <h1 class="display-3 text-uppercase text-white mb-3">voiture de luxe</h1>
-        
     </div>
-    <!-- Page Header Start -->
+    <!-- Carousel End -->
+
+
 
     <!-- Rent A Car Start -->
     <div class="container-fluid py-5">
@@ -54,24 +85,24 @@
             <h1 class="display-4 text-uppercase text-center mb-5">Trouve ta voiture</h1>
             <div class="row">
                 <?php
-               foreach ($voitures as $voiture) {
-                
-                if ($voiture["style"]=="Luxe") {
-                    array_push($luxecar,$voiture);
+                foreach ($voitures as $voiture) {
+
+                    if ($voiture["style"] == "Luxe") {
+                        array_push($luxecar, $voiture);
+                    }
                 }
-            }
-                foreach($luxecar as $car){
-                    if($car["prix"]==0){
-                        $prix="Discutez";
-                    }else{
-                        $prix=$car["prix"];
+                foreach ($luxecar as $car) {
+                    if ($car["prix"] == 0) {
+                        $prix = "Discutez";
+                    } else {
+                        $prix = $car["prix"];
                     }
-                    if ($car["typeboite"]==null) {
-                        $boite="--";
-                    }else{
-                        $boite=$car["typeboite"];
+                    if ($car["typeboite"] == null) {
+                        $boite = "--";
+                    } else {
+                        $boite = $car["typeboite"];
                     }
-                
+
                     echo '<div class="col-lg-4 col-md-6 mb-2">
                             <div class="rent-item mb-4">
                                 <img class="img-fluid mb-4" src="' . $car["photo"] . '" alt="' . $car["nom"] . '" style="max-width: 300px; height: 200px;">
@@ -91,11 +122,11 @@
                                     </div>
                                 </div>
                                 
-                                <a class="btn btn-primary px-3" href="detail.php?id='.$car["id"].'">' .methode::formatNumber($prix). ' FCFA</a>
+                                <a class="btn btn-primary px-3" href="detail.php?id=' . $car["id"] . '">' . methode::formatNumber($prix) . ' FCFA</a>
                             </div>
                         </div>';
-                } 
-            ?>
+                }
+                ?>
             </div>
         </div>
     </div>

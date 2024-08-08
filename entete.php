@@ -6,8 +6,8 @@
                     <a class="text-body pr-3" href=""><i class="fa fa-phone-alt mr-2"></i>+226 07684843</a>
                     <span class="text-body">|</span>
                     <a class="text-body px-3" href=""><i class="fa fa-envelope mr-2"></i>daoudamare19@gmail.com</a>
-                    <form class="d-inline-flex align-items-center ml-3" action="#" method="get">
-                        <input type="text" class="form-control" placeholder="Recherche...">
+                    <form class="d-inline-flex align-items-center ml-3" action="resultatRecherche.php" method="post">
+                        <input type="text" class="form-control" name="search" placeholder="Recherche...">
                         <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
                     </form> 
                 </div>
@@ -65,7 +65,7 @@
                                 <a href="accessoire.php" class="dropdown-item">Tous les Accessoires</a>
                                 <a href="electrique_acc.php" class="dropdown-item">Accessoire Electrique</a>
                                 <a href="cuisine_acc.php" class="dropdown-item">Accessoire de cuisine</a>
-                                <a href="vetement.php" class="dropdown-item">vetements</a>
+                                <a href="vetement.php" class="dropdown-item">Vêtements</a>
                             </div>
                         </div>
                         <a href="about.html" class="nav-item nav-link">A propos</a>

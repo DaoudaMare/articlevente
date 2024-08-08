@@ -26,7 +26,7 @@
     <?php include("enteteAdmin.php"); ?>
     
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Formulaire de Publication d'accessoire de cuine</h2>
+        <h2 class="text-center mb-4">Formulaire de Publication d'accessoire de cusine</h2>
         <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
             <div class="alert alert-success" id="success-message" role="alert">
                 Donnée publiée avec succès !
@@ -37,7 +37,7 @@
             </div>
         <?php endif; ?>
         
-        <form action="" method="post" enctype="multipart/form-data" class="border p-4 shadow-sm bg-light rounded">
+        <form action="traitementCuisine.php" method="post" enctype="multipart/form-data" class="border p-4 shadow-sm bg-light rounded">
             <div class="form-group">
                 <label for="nom"><i class="fas fa-car"></i> Nom :</label>
                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez le nom de la voiture" required>

@@ -1,14 +1,14 @@
 <?php 
     include('./methode/methode.php');
-    $electriques = array_reverse(methode::getElectrique());
+    $electriques = methode::getElectrique();
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>detail-accessoire</title>
+    <title>Accessoire</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -40,20 +40,13 @@
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">Accessoire de toutes Catégories</h1>
-        <div class="d-inline-flex text-white">
-            <h6 class="text-uppercase m-0"><a class="text-white" href="">Accueil</a></h6>
-            <h6 class="text-body m-0 px-3">/</h6>
-            <h6 class="text-uppercase text-body m-0">Accessoires</h6>
-        </div>
+        <h1 class="display-3 text-uppercase text-white mb-2">Résultats de recherche</h1>
     </div>
     <!-- Page Header Start -->
 
-
     <!-- Rent A Car Start -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <h1 class="display-4 text-uppercase text-center mb-5">Nos différents accessoires</h1>
+    <div class="container-fluid py-1">
+        <div class="container pt-3 pb-2">
             <div class="row">
                 <?php
                foreach ($electriques as $electrique) {

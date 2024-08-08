@@ -1,8 +1,8 @@
 
 <?php
 include("./methode/methode.php");
-$img = methode::getVoitureById($_GET["id"]);
-$similarCar = methode::getVoitures();
+$img = methode::getAccessoireById($_GET["id"]);
+//$similarCar = methode::getVoitures();
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +56,6 @@ $similarCar = methode::getVoitures();
                 <div class="col-lg-8 mb-5">
                     <h1 class="display-4 text-uppercase mb-5"><?php echo $img["nom"]; ?></h1>
                     <div class="row mx-n2 mb-3">
-                        <?php if (!empty($img["photo"])): ?>
-                            <div class="col-md-3 col-6 px-2 pb-2">
-                                <img class="img-fluid w-100" src="<?php echo $img["photo"]; ?>" alt="">
-                            </div>
-                        <?php endif; ?>
                         <?php if (!empty($img["photo1"])): ?>
                             <div class="col-md-3 col-6 px-2 pb-2">
                                 <img class="img-fluid w-100" src="<?php echo $img["photo1"]; ?>" alt="">
@@ -71,16 +66,21 @@ $similarCar = methode::getVoitures();
                                 <img class="img-fluid w-100" src="<?php echo $img["photo2"]; ?>" alt="">
                             </div>
                         <?php endif; ?>
+                        <?php if (!empty($img["photo3"])): ?>
+                            <div class="col-md-3 col-6 px-2 pb-2">
+                                <img class="img-fluid w-100" src="<?php echo $img["photo3"]; ?>" alt="">
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <p><?php echo $img["description"]; ?></p>
                     <div class="row pt-2">
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-car text-primary mr-2"></i>
-                            <span>Model: <?php echo $img["annee"]; ?></span>
+                            <span>Model: <?php echo $img["type"]; ?></span>
                         </div>
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-cogs text-primary mr-2"></i>
-                            <span><?php echo $img["typeboite"]; ?></span>
+                            <span><?php echo $img["puissance"]; ?></span>
                         </div>
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-road text-primary mr-2"></i>
@@ -152,45 +152,11 @@ $similarCar = methode::getVoitures();
                     </div>';
                 }
 
-                
                 ?>
             </div>
         </div>
     </div>
     <!-- Related Car End -->
-
-    <!-- Vendor Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="owl-carousel vendor-carousel">
-                <div class="bg-light p-4">
-                    <img src="img/vendor-1.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-2.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-3.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-4.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-5.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-6.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-7.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-8.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Vendor End -->
 
     <?php include("pied.php"); ?>
 
