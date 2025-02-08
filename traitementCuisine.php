@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Connexion à votre base de données (à adapter selon votre configuration)
-    $mysqli = new mysqli("localhost", "root", "", "italievente");
+    $mysqli = new mysqli("localhost", "u191227043_Daoudamare19", "Daoudamare19@", "u191227043_itatlievente");
 
     // Vérifier la connexion
     if ($mysqli->connect_error) {

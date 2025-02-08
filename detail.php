@@ -56,22 +56,24 @@ $similarCar = methode::getVoitures();
                 <div class="col-lg-8 mb-5">
                     <h1 class="display-4 text-uppercase mb-5"><?php echo $img["nom"]; ?></h1>
                     <div class="row mx-n2 mb-3">
-                        <?php if (!empty($img["photo"])): ?>
-                            <div class="col-md-3 col-6 px-2 pb-2">
-                                <img class="img-fluid w-100" src="<?php echo $img["photo"]; ?>" alt="">
-                            </div>
-                        <?php endif; ?>
-                        <?php if (!empty($img["photo1"])): ?>
-                            <div class="col-md-3 col-6 px-2 pb-2">
-                                <img class="img-fluid w-100" src="<?php echo $img["photo1"]; ?>" alt="">
-                            </div>
-                        <?php endif; ?>
-                        <?php if (!empty($img["photo2"])): ?>
-                            <div class="col-md-3 col-6 px-2 pb-2">
-                                <img class="img-fluid w-100" src="<?php echo $img["photo2"]; ?>" alt="">
-                            </div>
-                        <?php endif; ?>
-                    </div>
+    <?php if (!empty($img["photo"])): ?>
+        <div class="col-md-3 col-6 px-2 pb-2">
+            <img class="img-fluid w-100" src="<?php echo $img["photo"]; ?>" alt="" onclick="afficherImage('<?php echo $img["photo"]; ?>')">
+        </div>
+    <?php endif; ?>
+    <?php if (!empty($img["photo1"])): ?>
+        <div class="col-md-3 col-6 px-2 pb-2">
+            <img class="img-fluid w-100" src="<?php echo $img["photo1"]; ?>" alt="" onclick="afficherImage('<?php echo $img["photo1"]; ?>')">
+        </div>
+    <?php endif; ?>
+    <?php if (!empty($img["photo2"])): ?>
+        <div class="col-md-3 col-6 px-2 pb-2">
+            <img class="img-fluid w-100" src="<?php echo $img["photo2"]; ?>" alt="" onclick="afficherImage('<?php echo $img["photo2"]; ?>')">
+        </div>
+    <?php endif; ?>
+</div>
+
+
                     <p><?php echo $img["description"]; ?></p>
                     <div class="row pt-2">
                         <div class="col-md-3 col-6 mb-2">
@@ -209,6 +211,50 @@ $similarCar = methode::getVoitures();
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+
+    <!-- JavaScript pour afficher l'image dans le modal -->
+<script>
+    function afficherImage(url) {
+        document.getElementById("modalImage").src = url;
+        $('#imageModal').modal('show'); // Afficher le modal
+    }
+</script>
+
+<!-- Modal pour afficher les images -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Aperçu de l'image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" class="img-fluid" src="" alt="Aperçu de l'image">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal pour afficher les images -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Aperçu de l'image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" class="img-fluid" src="" alt="Aperçu de l'image">
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 </html>

@@ -61,7 +61,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle <?php echo basename($_SERVER['PHP_SELF']) == 'electriqueForms.php' || basename($_SERVER['PHP_SELF']) == 'cuisineForms.php' || basename($_SERVER['PHP_SELF']) == 'vetementForms.php' ? 'active' : ''; ?>" data-toggle="dropdown">Accessoires</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="electriqueForms.php" class="dropdown-item">Accessoire Electrique</a>
+                                <a href="electriqueforms.php" class="dropdown-item">Accessoire Electrique</a>
                                 <a href="cuisineForms.php" class="dropdown-item">Accessoire de cuisine</a>
                                 <a href="vetementForms.php" class="dropdown-item">Vêtements</a>
                             </div>

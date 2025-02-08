@@ -3,7 +3,7 @@ class methode
 {
     private static function connectDB()
     {
-        $mysqli = new mysqli("localhost", "root", "", "italievente");
+        $mysqli = new mysqli("localhost", "u191227043_Daoudamare19", "Daoudamare19@", "u191227043_itatlievente");
         if ($mysqli->connect_error) {
             die("Connexion échouée : " . $mysqli->connect_error);
         }
@@ -13,9 +13,9 @@ class methode
     public static function EnregistrerVoiture($nom, $annee, $etat, $photo, $disponible, $prix)
     {
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "italievente";
+        $username = "u191227043_Daoudamare19";
+        $password = "Daoudamare19@";
+        $dbname = "u191227043_itatlievente";
 
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -177,25 +177,35 @@ class methode
 
     static function addUser($nom, $prenom, $email, $password, $numero)
     {
+        // Connexion à la base de données
         $con = self::connectDB();
+        if (!$con) {
+            die("Erreur de connexion à la base de données : " . mysqli_connect_error());
+        }
+    
         // Hacher le mot de passe
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+    
         // Préparer et exécuter la requête SQL
         $stmt = $con->prepare("INSERT INTO user (nom, prenom, email, password, numero) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $nom, $prenom, $email, $hashed_password, $numero);
-
-        if ($stmt->execute()) {
-            echo "Nouvel utilisateur enregistré avec succès";
-        } else {
-            echo "Erreur : " . $stmt->error;
+    
+        if (!$stmt) {
+            die("Erreur de préparation de la requête : " . $con->error);
         }
-
+    
+        $stmt->bind_param("sssss", $nom, $prenom, $email, $hashed_password, $numero);
+    
+        if ($stmt->execute()) {
+            return "Nouvel utilisateur enregistré avec succès";
+        } else {
+            return "Erreur : " . $stmt->error;
+        }
+    
         // Fermer la connexion
         $stmt->close();
         $con->close();
     }
-
+    
     static function AuthUser($email, $password)
     {
         //include("./seconnecter.php");
@@ -590,7 +600,7 @@ class methode
     public static function updateUser($id, $nom, $prenom, $email, $password, $numero) {
 
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=italievente", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=u191227043_itatlievente", "Daoudamare19", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Erreur de connexion à la base de données : " . $e->getMessage());

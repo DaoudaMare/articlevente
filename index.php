@@ -331,7 +331,7 @@
                             <i class="fa fa-2x fa-envelope-open text-primary flex-shrink-0 mr-3"></i>
                             <div class="mt-n1">
                                 <h5 class="text-light">Pour d'autre services</h5>
-                                <p>italieoccasion@example.com</p>
+                                <p>nonioumar1@gmail.com</p>
                             </div>
                         </div>
                         <div class="d-flex">

@@ -8,7 +8,7 @@
                     <a class="text-body px-3" href=""><i class="fa fa-envelope mr-2"></i>nonioumar1@gmail.com</a>
                     <form class="d-inline-flex align-items-center ml-3" action="resultatRecherche.php" method="post">
                         <input type="text" class="form-control" name="search" placeholder="Recherche...">
-                        <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
+                        <button type="submit"  class="btn btn-primary ml-2">Rechercher</button>
                     </form> 
                 </div>
                 
@@ -55,7 +55,7 @@
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="car.php" class="dropdown-item">Toutes les Voitures</a>
                                 <a href="luxeCar.php" class="dropdown-item">Voiture de Luxe</a>
-                                <a href="OccasionCar.php" class="dropdown-item">Voiture Occasion</a>
+                                <a href="occasionCar.php" class="dropdown-item">Voiture Occasion</a>
                                 <a href="camionCar.php" class="dropdown-item">Camion et car</a>
                             </div>
                         </div>
@@ -68,8 +68,8 @@
                                 <a href="vetement.php" class="dropdown-item">Vêtements</a>
                             </div>
                         </div>
-                        <a href="about.html" class="nav-item nav-link">A propos</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="about.php" class="nav-item nav-link">A propos</a>
+                        <a href="contact.php" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
             </nav>

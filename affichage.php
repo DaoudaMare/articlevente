@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-$mysqli = new mysqli("localhost", "root", "", "italievente");
+$mysqli = new mysqli("localhost", "u191227043_Daoudamare19", "Daoudamare19@", "u191227043_itatlievente");
 
 // Vérifier la connexion
 if ($mysqli->connect_error) {
